@@ -1,0 +1,163 @@
+<html><head><base href="https://countdown-clock.ai" /><title>Event Countdowns</title><style>
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f4f8;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.container {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  padding: 30px;
+  max-width: 800px;
+  width: 100%;
+}
+h1 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.countdown-container {
+  margin-bottom: 40px;
+}
+.countdown-title {
+  color: #34495e;
+  font-size: 1.5em;
+  margin-bottom: 15px;
+  text-align: center;
+}
+.countdown {
+  display: flex;
+  justify-content: space-around;
+  background-color: #ecf0f1;
+  border-radius: 10px;
+  padding: 15px;
+}
+.countdown-item {
+  text-align: center;
+}
+.countdown-value {
+  font-size: 2em;
+  font-weight: bold;
+  color: #3498db;
+}
+.countdown-label {
+  font-size: 0.9em;
+  color: #7f8c8d;
+  text-transform: uppercase;
+}
+@media (max-width: 600px) {
+  .countdown {
+    flex-wrap: wrap;
+  }
+  .countdown-item {
+    width: 50%;
+    margin-bottom: 10px;
+  }
+}
+</style></head><body>
+<div class="container">
+  <h1>Event Countdowns</h1>
+  
+  <div class="countdown-container">
+    <h2 class="countdown-title">CU AGM - 3 November 2024</h2>
+    <div class="countdown" id="cu-agm-countdown">
+      <div class="countdown-item">
+        <div class="countdown-value" id="cu-agm-days">--</div>
+        <div class="countdown-label">Days</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-value" id="cu-agm-hours">--</div>
+        <div class="countdown-label">Hours</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-value" id="cu-agm-minutes">--</div>
+        <div class="countdown-label">Minutes</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-value" id="cu-agm-seconds">--</div>
+        <div class="countdown-label">Seconds</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="countdown-container">
+    <h2 class="countdown-title">RSEC - 8 March 2025</h2>
+    <div class="countdown" id="rsec-countdown">
+      <div class="countdown-item">
+        <div class="countdown-value" id="rsec-days">--</div>
+        <div class="countdown-label">Days</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-value" id="rsec-hours">--</div>
+        <div class="countdown-label">Hours</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-value" id="rsec-minutes">--</div>
+        <div class="countdown-label">Minutes</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-value" id="rsec-seconds">--</div>
+        <div class="countdown-label">Seconds</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="countdown-container">
+    <h2 class="countdown-title">NASEC - 15 March 2025</h2>
+    <div class="countdown" id="nasec-countdown">
+      <div class="countdown-item">
+        <div class="countdown-value" id="nasec-days">--</div>
+        <div class="countdown-label">Days</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-value" id="nasec-hours">--</div>
+        <div class="countdown-label">Hours</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-value" id="nasec-minutes">--</div>
+        <div class="countdown-label">Minutes</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-value" id="nasec-seconds">--</div>
+        <div class="countdown-label">Seconds</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function updateCountdown(id, endDate) {
+  const countDownDate = new Date(endDate).getTime();
+
+  return setInterval(function() {
+    const now = new Date().getTime();
+    const distance = countDownDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById(`${id}-days`).innerHTML = days.toString().padStart(2, '0');
+    document.getElementById(`${id}-hours`).innerHTML = hours.toString().padStart(2, '0');
+    document.getElementById(`${id}-minutes`).innerHTML = minutes.toString().padStart(2, '0');
+    document.getElementById(`${id}-seconds`).innerHTML = seconds.toString().padStart(2, '0');
+
+    if (distance < 0) {
+      clearInterval(this);
+      document.getElementById(`${id}-countdown`).innerHTML = "<p>This event has passed</p>";
+    }
+  }, 1000);
+}
+
+updateCountdown("cu-agm", "November 3, 2024 00:00:00");
+updateCountdown("rsec", "March 8, 2025 00:00:00");
+updateCountdown("nasec", "March 15, 2025 00:00:00");
+</script>
+</body></html>
